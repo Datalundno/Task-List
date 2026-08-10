@@ -123,6 +123,18 @@ Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-s
 
 ---
 
+## White-label (do not ship on the website)
+
+An unbranded **Task List** package exists for personal use (`whitelabel-1.0.0.0` / `taskList/downloads/TaskList.pbiviz`).
+
+- Display name: Task List (no DataLund)
+- Separate GUID from the branded visual
+- **Do not** link it from datalund.no, home, or the product page
+
+See [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md).
+
+---
+
 ## Source of truth in this repo
 
 | Path | Use |
@@ -133,3 +145,4 @@ Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-s
 | [`taskList/downloads/`](taskList/downloads/) | Canonical `.pbiviz` + sample Excel |
 | [`taskList/docs/PRIVACY.md`](taskList/docs/PRIVACY.md) | Sandbox-only privacy |
 | [`taskList/docs/SUPPORT.md`](taskList/docs/SUPPORT.md) | Support contacts |
+| [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md) | Unbranded twin (personal only) |
