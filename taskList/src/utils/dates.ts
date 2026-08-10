@@ -1,0 +1,98 @@
+"use strict";
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+/**
+ * Parse Power BI cell values that may arrive as Date or string.
+ */
+export function parseDate(value: unknown): Date | null {
+    if (value == null || value === "") {
+        return null;
+    }
+
+    if (value instanceof Date) {
+        return isNaN(value.getTime()) ? null : new Date(value.getTime());
+    }
+
+    if (typeof value === "number" && isFinite(value)) {
+        if (value > 1e11) {
+            const d = new Date(value);
+            return isNaN(d.getTime()) ? null : d;
+        }
+        if (value > 20000 && value < 100000) {
+            const oleEpoch = Date.UTC(1899, 11, 30);
+            const d = new Date(oleEpoch + value * MS_PER_DAY);
+            return isNaN(d.getTime()) ? null : d;
+        }
+        const d = new Date(value);
+        return isNaN(d.getTime()) ? null : d;
+    }
+
+    if (typeof value === "string") {
+        const trimmed = value.trim();
+        if (!trimmed) {
+            return null;
+        }
+        const parsed = new Date(trimmed);
+        return isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    return null;
+}
+
+export function addDays(date: Date, days: number): Date {
+    return new Date(date.getTime() + days * MS_PER_DAY);
+}
+
+export function dayDiff(start: Date, end: Date): number {
+    return (end.getTime() - start.getTime()) / MS_PER_DAY;
+}
+
+/**
+ * Normalize progress that may be 0–1 or 0–100. Returns 0–1 or null.
+ */
+export function normalizeProgress(value: unknown): number | null {
+    if (value == null || value === "") {
+        return null;
+    }
+    const n = typeof value === "number" ? value : Number(value);
+    if (!isFinite(n)) {
+        return null;
+    }
+    if (n < 0) {
+        return 0;
+    }
+    if (n <= 1) {
+        return n;
+    }
+    if (n <= 100) {
+        return n / 100;
+    }
+    return 1;
+}
+
+export function toDisplayString(value: string | number | Date | null): string {
+    if (value == null) {
+        return "";
+    }
+    if (value instanceof Date) {
+        return value.toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        });
+    }
+    return String(value);
+}
+
+/** Compact date for list columns (e.g. 10 Aug 26). */
+export function toCompactDate(value: Date | null): string {
+    if (!value) {
+        return "—";
+    }
+    return value.toLocaleDateString(undefined, {
+        year: "2-digit",
+        month: "short",
+        day: "numeric"
+    });
+}
