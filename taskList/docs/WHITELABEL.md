@@ -7,7 +7,7 @@ Personal / unbranded twin of **DataLund Task List**. Same behaviour; separate Po
 | Display name | DataLund Task List | **Task List** |
 | GUID | `taskList77784F8F0C1B422C8E9B3087731D2FA7` | `taskListWL0AB47A35089145D284187DE56271318E` |
 | Package file | `downloads/taskList.pbiviz` | `downloads/TaskList.pbiviz` |
-| Release tag | `v1.0.0.0` | `whitelabel-1.0.0.0` |
+| Release tag | `v1.0.2.0` | `whitelabel-1.0.2.0` |
 | Website | Yes (`datalund.no`) | **No** |
 
 ## Build

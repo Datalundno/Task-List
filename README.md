@@ -39,8 +39,8 @@ Import `taskList/downloads/taskList.pbiviz` into Power BI Desktop (**Import a vi
 
 | Build | Link |
 | --- | --- |
-| **Branded** — DataLund Task List 1.0.0.0 | [`taskList/downloads/taskList.pbiviz`](taskList/downloads/taskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/v1.0.0.0) |
-| **Unbranded (personal)** — Task List 1.0.0.0 | [`taskList/downloads/TaskList.pbiviz`](taskList/downloads/TaskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/whitelabel-1.0.0.0) |
+| **Branded** — DataLund Task List 1.0.2.0 | [`taskList/downloads/taskList.pbiviz`](taskList/downloads/taskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/v1.0.2.0) |
+| **Unbranded (personal)** — Task List 1.0.2.0 | [`taskList/downloads/TaskList.pbiviz`](taskList/downloads/TaskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/whitelabel-1.0.2.0) |
 | Sample Excel | [`taskList/downloads/TaskListSampleData.xlsx`](taskList/downloads/TaskListSampleData.xlsx) |
 
 The unbranded build is **personal only** — do **not** put it on datalund.no. Rebuild with `cd taskList && npm run package:whitelabel`.

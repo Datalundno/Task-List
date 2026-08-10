@@ -1,6 +1,6 @@
 # Website agent brief — DataLund Task List
 
-Ship a product page and download for **DataLund Task List 1.0.0.0** on **`Datalundno/Website`**.
+Ship a product page and download for **DataLund Task List 1.0.2.0** on **`Datalundno/Website`**.
 
 This visual is the third suite item (after Gantt and Resource Load). It answers *what’s in the portfolio right now* and lets users **pick rows** to cross-filter the page.
 
@@ -14,7 +14,7 @@ This visual is the third suite item (after Gantt and Resource Load). It answers 
 | --- | --- |
 | Display name | **DataLund Task List** |
 | Short name | Task List |
-| Version | `1.0.0.0` |
+| Version | `1.0.2.0` |
 | Offer / file | `taskList.pbiviz` |
 | Product URL | `https://datalund.no/visuals/task-list/` |
 | Download URL | `https://datalund.no/downloads/taskList.pbiviz` |
@@ -95,7 +95,7 @@ Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-s
 2. **Downloads:** copy `taskList.pbiviz` + `TaskListSampleData.xlsx` into `public/downloads/`.
 3. **Home page (`index.html` / Vite app):**
    - Add Task List to visuals / nav (at least a second feature section or card).
-   - Add SoftwareApplication JSON-LD for Task List (version `1.0.0.0`, download URL above).
+   - Add SoftwareApplication JSON-LD for Task List (version `1.0.2.0`, download URL above).
    - Optionally mention Task List in the site-wide description once Gantt is no longer the only visual.
 4. **Global nav** on help pages: link **DataLund Task List** → `/visuals/task-list/` alongside Gantt.
 5. **Do not** invent screenshots/video until assets exist; text + download is enough for v1. If a placeholder stage is needed, reuse list-row language (status chips + progress), not Gantt bars.
@@ -114,18 +114,18 @@ Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-s
 
 ## Acceptance (website)
 
-- [ ] `https://datalund.no/visuals/task-list/` live with version **1.0.0.0**
+- [ ] `https://datalund.no/visuals/task-list/` live with version **1.0.2.0**
 - [ ] `https://datalund.no/downloads/taskList.pbiviz` serves this package
 - [ ] Sample Excel download works
 - [ ] Home or visuals section promotes Task List with correct one-liner
-- [ ] JSON-LD `softwareVersion` = `1.0.0.0`
+- [ ] JSON-LD `softwareVersion` = `1.0.2.0`
 - [ ] Privacy/support links unchanged and accurate
 
 ---
 
 ## White-label (do not ship on the website)
 
-An unbranded **Task List** package exists for personal use (`whitelabel-1.0.0.0` / `taskList/downloads/TaskList.pbiviz`).
+An unbranded **Task List** package exists for personal use (`whitelabel-1.0.2.0` / `taskList/downloads/TaskList.pbiviz`).
 
 - Display name: Task List (no DataLund)
 - Separate GUID from the branded visual
