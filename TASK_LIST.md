@@ -96,9 +96,9 @@ One composition: a **vertical list** (not a mini-dashboard).
 ### Encoding
 
 1. **Status / RAG:** map common values case-insensitively:
-   - Red / R / Critical → red chip  
-   - Amber / Yellow / A / At risk → amber chip  
-   - Green / G / On track → green chip  
+   - Red / R / Critical / Rød → red chip  
+   - Amber / Yellow / A / At risk / Gul → amber chip  
+   - Green / G / On track / Grønn → green chip  
    - Unknown / other → neutral chip + full text in tooltip  
    Allow format-pane overrides for the three RAG colors.
 2. **Progress:** track + fill (reuse Gantt progress color language) or numeric %; clamp 0–100.

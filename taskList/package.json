@@ -1,7 +1,7 @@
 {
   "name": "datalund-task-list",
   "description": "DataLund Task List — custom visual for Microsoft Power BI",
-  "version": "1.0.0.0",
+  "version": "1.0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Datalundno/Task-List.git"

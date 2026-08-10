@@ -4,7 +4,7 @@
     "displayName": "DataLund Task List",
     "guid": "taskList77784F8F0C1B422C8E9B3087731D2FA7",
     "visualClassName": "Visual",
-    "version": "1.0.0.0",
+    "version": "1.0.1.0",
     "description": "DataLund Task List — browse and select tasks or projects in Power BI with RAG status chips, progress, groups, density presets, cross-filtering, and tooltips. Free visual by DataLund (datalund.no).",
     "supportUrl": "https://datalund.no/support/",
     "gitHubUrl": "https://github.com/Datalundno/Task-List"
@@ -24,5 +24,5 @@
   "stringResources": [
     "stringResources/en-US/resources.resjson"
   ],
-  "version": "1.0.0.0"
+  "version": "1.0.1.0"
 }

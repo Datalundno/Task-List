@@ -67,9 +67,9 @@ Case-insensitive. Unknown values get a neutral chip; full text stays in the tool
 
 | Level | Accepted examples |
 | --- | --- |
-| Red | Red, R, Critical, Blocked, Off track |
-| Amber | Amber, Yellow, A, At risk, Watch |
-| Green | Green, G, On track, OK, Healthy |
+| Red | Red, R, Critical, Blocked, Off track, **Rød** / Rod |
+| Amber | Amber, Yellow, A, At risk, Watch, **Gul** |
+| Green | Green, G, On track, OK, Healthy, **Grønn** / Gronn |
 
 Override the three RAG colors under **Format → Status**.
 
