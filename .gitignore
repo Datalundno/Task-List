@@ -1,0 +1,9 @@
+node_modules/
+.tmp/
+dist/
+*.log
+.DS_Store
+taskList/node_modules/
+taskList/.tmp/
+taskList/dist/
+taskList/webpack.statistics.*.html

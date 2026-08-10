@@ -1,1 +1,94 @@
-# Task-List
+# DataLund Task List
+
+Free custom **Task List** visual for Microsoft Power BI by **DataLund** ([datalund.no](https://datalund.no)).
+
+Browse and select tasks/projects — scannable rows with optional RAG status chips, progress, groups, and dates that **cross-filter** Gantt, Resource Load, and native visuals.
+
+| Path | Purpose |
+| --- | --- |
+| [`TASK_LIST.md`](TASK_LIST.md) | Agent kickoff brief (suite contracts + acceptance) |
+| [`taskList/`](taskList/) | Power BI visual + package |
+| [`taskList/docs/APPSOURCE.md`](taskList/docs/APPSOURCE.md) | AppSource upload checklist |
+| [`taskList/downloads/`](taskList/downloads/) | Packaged `.pbiviz` + sample Excel |
+
+## One job
+
+| Visual | Answers |
+| --- | --- |
+| **Gantt** | *when* |
+| **Resource Load** | *who is busy* |
+| **Task List** | *what’s in the portfolio right now* — pick rows to filter the page |
+
+## Quick start
+
+```bash
+cd taskList
+npm install
+npm start          # developer visual
+npm run package    # build .pbiviz
+```
+
+Import `taskList/downloads/taskList.pbiviz` into Power BI Desktop (**Import a visual from a file**).
+
+## Field binding
+
+Role **`name`** values match the DataLund suite so reports can reuse the same columns:
+
+| Field well | Role `name` | Required | Notes |
+| --- | --- | --- | --- |
+| Project | `task` | **Yes** | Row title |
+| RAG | `status` | Recommended | Free text or RAG (`Red`/`Amber`/`Green`, `R`/`A`/`G`, etc.) |
+| Group | `group` | No | Phase / parent → section headers or column |
+| Project lead | `resource` | No | Assignee column |
+| Progress | `progress` | No | 0–1 or 0–100 |
+| Start Date | `startDate` | No | Column / sort |
+| End Date | `endDate` | No | Column / sort |
+| Duration | `duration` | No | Days; used when End is absent |
+| Tooltips | `tooltipFields` | No | Up to 8 extra fields |
+
+### Status / RAG mapping
+
+Case-insensitive. Unknown values get a neutral chip; full text stays in the tooltip.
+
+| Level | Accepted examples |
+| --- | --- |
+| Red | Red, R, Critical, Blocked, Off track |
+| Amber | Amber, Yellow, A, At risk, Watch |
+| Green | Green, G, On track, OK, Healthy |
+
+Override the three RAG colors under **Format → Status**.
+
+### Density
+
+**Format → General → Density** uses the suite presets: **Compact**, **Comfortable** (default), **Large**, **Custom**. Same names/numbers as DataLund Gantt.
+
+### Row limit
+
+Table mapping uses a top count of **30 000** rows (same mindset as Gantt). Prefer pre-aggregated “latest pulse” rows for Microsoft Lists history.
+
+## Sample data & Lists mapping
+
+Sample workbook: [`taskList/downloads/TaskListSampleData.xlsx`](taskList/downloads/TaskListSampleData.xlsx)
+
+| Microsoft Lists field | Role |
+| --- | --- |
+| Project name | `task` |
+| Project status / RAG | `status` |
+| Project lead | `resource` |
+| Phase / Type / Domain | `group` |
+| Progress (%) | `progress` |
+| Start / Estimated end | `startDate` / `endDate` |
+| Next milestone, obstacles, notes | `tooltipFields` |
+
+Tip: bind the **latest** update’s RAG/progress so the list shows current pulse, not history.
+
+## Suite
+
+Sibling visuals live in separate repos. Shared contracts: density presets + field role names (see [`TASK_LIST.md`](TASK_LIST.md) and Gantt `SUITE.md`).
+
+- Gantt: https://github.com/Datalundno/GANTT  
+- Product page (planned): https://datalund.no/visuals/task-list/
+
+## Privacy
+
+Sandbox-only; no telemetry or network calls. See [`taskList/docs/PRIVACY.md`](taskList/docs/PRIVACY.md).
