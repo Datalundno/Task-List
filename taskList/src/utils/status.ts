@@ -8,15 +8,21 @@
 export type RagLevel = "red" | "amber" | "green" | "neutral";
 
 const RED_TOKENS = new Set([
-    "red", "r", "critical", "crit", "blocked", "off track", "off-track", "atrasado"
+    "red", "r", "critical", "crit", "blocked", "off track", "off-track", "atrasado",
+    // Norwegian
+    "rød", "rod"
 ]);
 
 const AMBER_TOKENS = new Set([
-    "amber", "yellow", "a", "y", "at risk", "at-risk", "risk", "watch", "caution"
+    "amber", "yellow", "a", "y", "at risk", "at-risk", "risk", "watch", "caution",
+    // Norwegian (gul = yellow)
+    "gul"
 ]);
 
 const GREEN_TOKENS = new Set([
-    "green", "g", "on track", "on-track", "ok", "healthy", "good"
+    "green", "g", "on track", "on-track", "ok", "healthy", "good",
+    // Norwegian
+    "grønn", "gronn"
 ]);
 
 export function mapStatusToRag(raw: string | null | undefined): RagLevel {
