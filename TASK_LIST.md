@@ -4,7 +4,7 @@ Copy this file into the new Task List repo (or point the agent at it). Implement
 
 **Reference implementation:** [Datalundno/GANTT](https://github.com/Datalundno/GANTT) → `ganttChart/` (DataLund Gantt 1.8.x).  
 **Sibling briefs:** Resource Load → `RESOURCE_LOAD.md` in the Gantt repo (separate visual).  
-**Suite contracts:** follow the density table and field-role names below (same as Gantt `SUITE.md`).
+**Suite contracts:** follow [`ECOSYSTEM.md`](ECOSYSTEM.md) (Website source of truth). Density and field-role names below must match that file; on conflict, `ECOSYSTEM.md` wins.
 
 ---
 
@@ -50,8 +50,8 @@ Keep role `name` values identical to the suite so reports can reuse the same col
 | Resource | `resource` | Grouping | Optional. Assignee / project lead column. |
 | Progress | `progress` | Measure | Optional. 0–1 or 0–100; show as bar or %. |
 | Start Date | `startDate` | GroupingOrMeasure | Optional. Column / sort. |
-| End Date | `endDate` | GroupingOrMeasure | Optional. Column / sort. |
-| Duration | `duration` | Measure | Optional. Days; alternative to End. |
+| End Date | `endDate` | GroupingOrMeasure | Optional. Preferred end; teach this in samples / docs. |
+| Duration | `duration` | Measure | Optional later. Days; alternative when End is absent. |
 | Status | `status` | Grouping | **Optional but recommended.** RAG or project status text (see below). |
 | Tooltips | `tooltipFields` | Grouping | Optional; up to ~8 extra fields (milestones, obstacles, notes). |
 
@@ -63,7 +63,7 @@ Gantt/Resource Load do not require `status`. Task List should add:
 
 | Role | `name` | Kind | Notes |
 | --- | --- | --- | --- |
-| Status | `status` | Grouping | Free text or RAG (`Red` / `Amber` / `Green`, or R/A/G). Used for color chip + sort. |
+| Status | `status` | Grouping | Free text or RAG (`Red` / `Amber` / `Green`, `Rød` / `Gul` / `Grønn`, or R/A/G). Used for color chip + sort. |
 
 Document this addition in the new repo README. Do **not** change Gantt capabilities; other visuals may adopt `status` later.
 
@@ -220,7 +220,11 @@ Format objects (v1):
 
 ## 6) Sample data & Lists mapping
 
-Ship a small Excel sample with columns the visual binds to.
+Ship a small Excel sample with the **PM-maintained** starter columns only ([`ECOSYSTEM.md`](ECOSYSTEM.md) §2):
+
+`Project · RAG · Group · Project lead · Progress · Start Date · End Date`
+
+Do **not** put Duration or Tooltips columns in the default starter (still supported by the visual later).
 
 Typical Microsoft Lists → roles:
 
@@ -231,8 +235,8 @@ Typical Microsoft Lists → roles:
 | Project lead | `resource` |
 | Phase / Type / Domain / Primary arena | `group` |
 | Progress (%) | `progress` |
-| Start date / Estimated end | `startDate` / `endDate` |
-| Next milestone, obstacles, development | `tooltipFields` |
+| Start / End | `startDate` / `endDate` |
+| Next milestone, obstacles, development (optional later) | `tooltipFields` |
 
 Report tip: bind the **latest** update’s RAG/progress (via measure or pre-aggregated table) so the list shows current pulse, not history.
 

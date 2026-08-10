@@ -3,27 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DataLund Task List — Free Power BI visual | Datalund</title>
+  <title>DataLund Task List — Free Power BI visual | DataLund</title>
   <meta name="description" content="DataLund Task List is a free Power BI visual to browse projects with RAG status, progress, and groups — click a row to cross-filter the report." />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0F3D36" />
-  <meta name="author" content="Datalund" />
+  <meta name="author" content="DataLund" />
   <link rel="canonical" href="https://datalund.no/visuals/task-list/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta property="og:site_name" content="Datalund" />
+  <meta property="og:site_name" content="DataLund" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://datalund.no/visuals/task-list/" />
   <meta property="og:title" content="DataLund Task List — Free Power BI visual" />
   <meta property="og:description" content="Browse and select projects with RAG chips and progress. Free .pbiviz for Power BI Desktop." />
-  <meta property="og:image" content="https://datalund.no/og-image.png" />
+  <meta property="og:image" content="https://datalund.no/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DataLund Task List — Free Power BI visual" />
   <meta name="twitter:description" content="Browse and select projects with RAG chips and progress. Free .pbiviz for Power BI Desktop." />
-  <meta name="twitter:image" content="https://datalund.no/og-image.png" />
+  <meta name="twitter:image" content="https://datalund.no/og-image.jpg" />
   <link rel="stylesheet" href="/legal.css" />
   <link rel="stylesheet" href="/consent.css" />
   <script type="application/ld+json">
@@ -38,10 +38,10 @@
     "description": "Free Power BI visual to browse and select projects with RAG status, progress, groups, and cross-filtering.",
     "url": "https://datalund.no/visuals/task-list/",
     "downloadUrl": "https://datalund.no/downloads/taskList.pbiviz",
-    "softwareVersion": "1.0.2.0",
+    "softwareVersion": "1.0.3.0",
     "publisher": {
       "@type": "Organization",
-      "name": "Datalund",
+      "name": "DataLund",
       "url": "https://datalund.no/"
     }
   }
@@ -49,9 +49,10 @@
 </head>
 <body>
   <header class="bar">
-    <a class="brand" href="/">Datalund</a>
+    <a class="brand" href="/">DataLund</a>
     <nav>
       <a href="/visuals/gantt/">DataLund Gantt chart</a>
+      <a href="/visuals/resource-load/">DataLund Resource Load</a>
       <a href="/visuals/task-list/">DataLund Task List</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
@@ -64,30 +65,37 @@
 
     <div class="callout">
       AppSource <strong>Help</strong> page.
-      Works next to <a href="/visuals/gantt/">DataLund Gantt chart</a>.
+      Works next to <a href="/visuals/gantt/">DataLund Gantt chart</a> and <a href="/visuals/resource-load/">DataLund Resource Load</a>.
       For questions, use <a href="/support/">Support</a>.
     </div>
 
     <h2>Features</h2>
     <ul>
       <li>Scannable project / task rows — click to filter the rest of the report</li>
-      <li>Optional RAG status chips (Red / Amber / Green, flexible text)</li>
-      <li>Progress bar and percent when Progress is bound</li>
+      <li>Optional RAG status chips (Red / Amber / Green; also Rød / Gul / Grønn)</li>
+      <li>Progress bar and percent when Progress is bound (0–1 or 0–100)</li>
       <li>Group / phase section headers</li>
-      <li>Density presets shared with DataLund Gantt (Compact / Comfortable / Large)</li>
-      <li>Tooltips for milestones, obstacles, and notes</li>
+      <li>Density presets shared with the suite (Compact / Comfortable / Large / Custom)</li>
       <li>No network calls — runs in the Power BI sandbox</li>
     </ul>
 
     <h2>Fields</h2>
+    <p class="meta">
+      Same suite field roles as
+      <a href="/visuals/gantt/">Gantt</a> and
+      <a href="/visuals/resource-load/">Resource Load</a>, with Lists-friendly labels
+      (Project = Task, Project lead = Resource, RAG = status).
+    </p>
     <ul>
       <li><strong>Project</strong> (required)</li>
-      <li>Optional: RAG, Group, Project lead, Progress, Start Date, End Date / Duration, Tooltips</li>
+      <li>Keep up to date: RAG, Group, Project lead, Progress, Start Date, End Date</li>
+      <li>Also supported later: Duration (instead of End Date), Tooltips</li>
     </ul>
 
     <h2>Suite</h2>
     <ul>
       <li><strong>Gantt</strong> — when tasks run</li>
+      <li><strong>Resource Load</strong> — who is busy</li>
       <li><strong>Task List</strong> — what’s in the portfolio right now</li>
     </ul>
 
@@ -103,13 +111,19 @@
         href="/downloads/TaskListSampleData.xlsx"
         download
         data-analytics-download="TaskListSampleData.xlsx"
-      >Sample Excel</a>
+      >Starter Excel</a>
+      <a
+        class="btn ghost"
+        href="/downloads/DatalundSuiteSample.xlsx"
+        download
+        data-analytics-download="DatalundSuiteSample.xlsx"
+      >Suite starter</a>
       <a class="btn ghost" href="/support/">Support</a>
     </p>
   </article>
   <footer class="bar foot">
     <p>
-      © 2026 Datalund ·
+      © 2026 DataLund ·
       <a href="/privacy/#analytics" data-analytics-preferences>Analytics preferences</a> ·
       Not affiliated with Microsoft. Power BI is a trademark of Microsoft.
     </p>

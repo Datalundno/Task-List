@@ -1,10 +1,12 @@
 # Website agent brief — DataLund Task List
 
-Ship a product page and download for **DataLund Task List 1.0.2.0** on **`Datalundno/Website`**.
+Ship a product page and download for **DataLund Task List 1.0.3.0** on **`Datalundno/Website`**.
 
 This visual is the third suite item (after Gantt and Resource Load). It answers *what’s in the portfolio right now* and lets users **pick rows** to cross-filter the page.
 
 **Do not fold Task List into the Gantt page.** Give it its own route, download, and nav entry.
+
+Field / density / starter contract: [`ECOSYSTEM.md`](ECOSYSTEM.md) (canonical on Website). Prefer End Date over Duration in copy; Duration and Tooltips are “also supported later.”
 
 ---
 
@@ -14,11 +16,12 @@ This visual is the third suite item (after Gantt and Resource Load). It answers 
 | --- | --- |
 | Display name | **DataLund Task List** |
 | Short name | Task List |
-| Version | `1.0.2.0` |
+| Version | `1.0.3.0` |
 | Offer / file | `taskList.pbiviz` |
 | Product URL | `https://datalund.no/visuals/task-list/` |
 | Download URL | `https://datalund.no/downloads/taskList.pbiviz` |
 | Sample data | `https://datalund.no/downloads/TaskListSampleData.xlsx` |
+| Suite starter | `https://datalund.no/downloads/DatalundSuiteSample.xlsx` |
 | GitHub | `https://github.com/Datalundno/Task-List` |
 | Support | `https://datalund.no/support/` |
 | Privacy | `https://datalund.no/privacy/` |
@@ -35,7 +38,7 @@ Use this trio consistently on home / visuals sections:
 | Visual | One-liner |
 | --- | --- |
 | **DataLund Gantt** | *When* — tasks on a timeline |
-| **Resource Load** | *Who is busy* — people on tasks *(sibling; may still be upcoming)* |
+| **Resource Load** | *Who is busy* — people on tasks |
 | **DataLund Task List** | *What’s in the portfolio* — browse + select rows to filter the page |
 
 **Hero / lede (product page):**
@@ -63,27 +66,28 @@ Use this trio consistently on home / visuals sections:
 ### Features (bullets)
 
 - Scannable project / task rows with click-to-filter selection
-- Optional RAG status chips (Red / Amber / Green — flexible text mapping)
-- Progress bar and percent when Progress is bound
+- Optional RAG status chips (Red / Amber / Green — also Rød / Gul / Grønn)
+- Progress bar and percent when Progress is bound (0–1 or 0–100)
 - Group / phase section headers
-- Density presets shared with DataLund Gantt (Compact / Comfortable / Large)
-- Tooltips for milestones, obstacles, and notes
+- Density presets shared with the suite (Compact / Comfortable / Large / Custom)
 - No network calls — runs in the Power BI sandbox
 
 ### Fields (for help page)
 
 - **Project** (required) — role `task`
-- Optional: **RAG** (`status`), **Group**, **Project lead**, **Progress**, **Start / End**, **Duration**, **Tooltips**
+- Keep up to date: **RAG** (`status`), **Group**, **Project lead**, **Progress**, **Start Date**, **End Date**
+- Also supported later: **Duration**, **Tooltips**
 
 ### Install blurb
 
-> Download the `.pbiviz`, then in Power BI Desktop use **Import a visual from a file**. Bind **Project**, then add RAG and Progress for a PMO pulse page next to DataLund Gantt.
+> Download the `.pbiviz`, then in Power BI Desktop use **Import a visual from a file**. Bind **Project**, then add RAG, Progress, Start Date, and End Date for a PMO pulse page next to DataLund Gantt.
 
 ### CTA labels
 
 - Primary: `Download .pbiviz`
-- Secondary: `Sample Excel`
-- Tertiary: `Help` → `/visuals/task-list/`
+- Secondary: `Starter Excel`
+- Tertiary: `Suite starter` → `/downloads/DatalundSuiteSample.xlsx`
+- Help → `/visuals/task-list/`
 
 ---
 
@@ -92,12 +96,12 @@ Use this trio consistently on home / visuals sections:
 Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-sync/APPLY.md`](website-sync/APPLY.md)).
 
 1. **New help page:** `public/visuals/task-list/index.html` (ready-made in sync folder).
-2. **Downloads:** copy `taskList.pbiviz` + `TaskListSampleData.xlsx` into `public/downloads/`.
+2. **Downloads:** copy `taskList.pbiviz` + `TaskListSampleData.xlsx` into `public/downloads/`. Prefer regenerating sample from Website `scripts/generate-sample-data.py` so columns stay `Project · RAG · Group · Project lead · Progress · Start Date · End Date`.
 3. **Home page (`index.html` / Vite app):**
    - Add Task List to visuals / nav (at least a second feature section or card).
-   - Add SoftwareApplication JSON-LD for Task List (version `1.0.2.0`, download URL above).
+   - Add SoftwareApplication JSON-LD for Task List (version `1.0.3.0`, download URL above).
    - Optionally mention Task List in the site-wide description once Gantt is no longer the only visual.
-4. **Global nav** on help pages: link **DataLund Task List** → `/visuals/task-list/` alongside Gantt.
+4. **Global nav** on help pages: link **DataLund Task List** → `/visuals/task-list/` alongside Gantt and Resource Load.
 5. **Do not** invent screenshots/video until assets exist; text + download is enough for v1. If a placeholder stage is needed, reuse list-row language (status chips + progress), not Gantt bars.
 
 ---
@@ -114,18 +118,18 @@ Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-s
 
 ## Acceptance (website)
 
-- [ ] `https://datalund.no/visuals/task-list/` live with version **1.0.2.0**
+- [ ] `https://datalund.no/visuals/task-list/` live with version **1.0.3.0**
 - [ ] `https://datalund.no/downloads/taskList.pbiviz` serves this package
-- [ ] Sample Excel download works
+- [ ] Sample Excel download uses PM column set only (no Duration / Tooltips columns)
 - [ ] Home or visuals section promotes Task List with correct one-liner
-- [ ] JSON-LD `softwareVersion` = `1.0.2.0`
+- [ ] JSON-LD `softwareVersion` = `1.0.3.0`
 - [ ] Privacy/support links unchanged and accurate
 
 ---
 
 ## White-label (do not ship on the website)
 
-An unbranded **Task List** package exists for personal use (`whitelabel-1.0.2.0` / `taskList/downloads/TaskList.pbiviz`).
+An unbranded **Task List** package exists for personal use (`whitelabel-1.0.3.0` / `taskList/downloads/TaskList.pbiviz`).
 
 - Display name: Task List (no DataLund)
 - Separate GUID from the branded visual
@@ -139,6 +143,7 @@ See [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md).
 
 | Path | Use |
 | --- | --- |
+| [`ECOSYSTEM.md`](ECOSYSTEM.md) | Suite contract (fields, density, starters) |
 | [`website-sync/`](website-sync/) | Drop-in HTML + downloads + APPLY steps |
 | [`TASK_LIST.md`](TASK_LIST.md) | Full product/engineering brief |
 | [`README.md`](README.md) | Field binding, RAG mapping, density |

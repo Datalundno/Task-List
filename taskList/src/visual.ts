@@ -201,10 +201,10 @@ export class Visual implements IVisual {
 
         const steps = card.append("ul").classed("tasklist-landing-steps", true);
         const stepKeys: Array<[string, string]> = [
-            ["Landing_Step1", "1. Drag Project / Task into the Project field"],
-            ["Landing_Step2", "2. Optional: RAG status, Project lead, Group"],
-            ["Landing_Step3", "3. Optional: Progress, Start / End dates"],
-            ["Landing_Step4", "4. Optional: Tooltips (milestones, obstacles, notes)"]
+            ["Landing_Step1", "1. Drag Project into the Project field"],
+            ["Landing_Step2", "2. Optional: RAG, Group, Project lead, Progress"],
+            ["Landing_Step3", "3. Optional: Start Date and End Date"],
+            ["Landing_Step4", "4. Also supported later: Duration (if no End Date), Tooltips"]
         ];
         for (const [key, fallback] of stepKeys) {
             steps.append("li").text(this.t(key, fallback));
