@@ -10,7 +10,9 @@ Browse and select tasks/projects — scannable rows with optional RAG status chi
 | [`WEBSITE.md`](WEBSITE.md) | **Website agent brief** — promo copy, URLs, suite positioning |
 | [`website-sync/`](website-sync/) | Drop-in product page + downloads for `Datalundno/Website` |
 | [`taskList/`](taskList/) | Power BI visual + package |
+| [`taskList/whitelabel/`](taskList/whitelabel/) | Unbranded identity overlays (personal build) |
 | [`taskList/docs/APPSOURCE.md`](taskList/docs/APPSOURCE.md) | AppSource upload checklist |
+| [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md) | White-label build notes |
 | [`taskList/downloads/`](taskList/downloads/) | Packaged `.pbiviz` + sample Excel |
 
 ## One job
@@ -31,6 +33,16 @@ npm run package    # build .pbiviz
 ```
 
 Import `taskList/downloads/taskList.pbiviz` into Power BI Desktop (**Import a visual from a file**).
+
+### Downloads
+
+| Build | Link |
+| --- | --- |
+| **Branded** — DataLund Task List 1.0.0.0 | [`taskList/downloads/taskList.pbiviz`](taskList/downloads/taskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/v1.0.0.0) |
+| **Unbranded (personal)** — Task List 1.0.0.0 | [`taskList/downloads/TaskList.pbiviz`](taskList/downloads/TaskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/whitelabel-1.0.0.0) |
+| Sample Excel | [`taskList/downloads/TaskListSampleData.xlsx`](taskList/downloads/TaskListSampleData.xlsx) |
+
+The unbranded build is **personal only** — do **not** put it on datalund.no. Rebuild with `cd taskList && npm run package:whitelabel`.
 
 ## Field binding
 

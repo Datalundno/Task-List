@@ -1,0 +1,9 @@
+{
+  "name": "task-list",
+  "description": "Task List — custom visual for Microsoft Power BI (unbranded)",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Datalundno/Task-List.git"
+  }
+}

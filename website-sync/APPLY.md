@@ -38,3 +38,4 @@ The sync folder includes a **ready help page** and downloads. The Vite home (`in
 - https://datalund.no/downloads/TaskListSampleData.xlsx → sample workbook
 - Help page JSON-LD `softwareVersion` = `1.0.0.0`
 - Cross-link to Gantt; no white-label / unbranded Task List on the site
+
