@@ -7,6 +7,8 @@ Browse and select tasks/projects — scannable rows with optional RAG status chi
 | Path | Purpose |
 | --- | --- |
 | [`TASK_LIST.md`](TASK_LIST.md) | Agent kickoff brief (suite contracts + acceptance) |
+| [`WEBSITE.md`](WEBSITE.md) | **Website agent brief** — promo copy, URLs, suite positioning |
+| [`website-sync/`](website-sync/) | Drop-in product page + downloads for `Datalundno/Website` |
 | [`taskList/`](taskList/) | Power BI visual + package |
 | [`taskList/docs/APPSOURCE.md`](taskList/docs/APPSOURCE.md) | AppSource upload checklist |
 | [`taskList/downloads/`](taskList/downloads/) | Packaged `.pbiviz` + sample Excel |
@@ -86,8 +88,19 @@ Tip: bind the **latest** update’s RAG/progress so the list shows current pulse
 
 Sibling visuals live in separate repos. Shared contracts: density presets + field role names (see [`TASK_LIST.md`](TASK_LIST.md) and Gantt `SUITE.md`).
 
-- Gantt: https://github.com/Datalundno/GANTT  
-- Product page (planned): https://datalund.no/visuals/task-list/
+| Visual | Answers |
+| --- | --- |
+| [DataLund Gantt](https://github.com/Datalundno/GANTT) | *when* |
+| Resource Load | *who is busy* |
+| **DataLund Task List** | *what’s in the portfolio* — browse + select |
+
+## Website / promotion
+
+Point the **Website** agent at [`WEBSITE.md`](WEBSITE.md) and [`website-sync/APPLY.md`](website-sync/APPLY.md).
+
+- Product URL: https://datalund.no/visuals/task-list/
+- Download: https://datalund.no/downloads/taskList.pbiviz
+- Ready HTML + `.pbiviz` + sample Excel live under [`website-sync/`](website-sync/)
 
 ## Privacy
 
