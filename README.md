@@ -29,7 +29,8 @@ Browse and select tasks/projects — scannable rows with optional RAG status chi
 cd taskList
 npm install
 npm start          # developer visual
-npm run package    # build .pbiviz
+npm run package    # branded .pbiviz
+npm run package:whitelabel  # unbranded TaskList.pbiviz (personal only)
 ```
 
 Import `taskList/downloads/taskList.pbiviz` into Power BI Desktop (**Import a visual from a file**).
