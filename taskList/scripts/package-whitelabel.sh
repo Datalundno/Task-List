@@ -76,8 +76,8 @@ fi
 
 npx pbiviz package
 GUID_PKG=$(ls dist/*.pbiviz | head -1)
-mkdir -p "$ROOT/downloads" "$ROOT/downloads/wl"
+mkdir -p "$ROOT/downloads"
 cp "$GUID_PKG" "$ROOT/downloads/TaskList.pbiviz"
-cp "$GUID_PKG" "$ROOT/downloads/wl/TaskList.pbiviz"
 echo "Wrote $ROOT/downloads/TaskList.pbiviz ($(basename "$GUID_PKG"))"
+echo "Note: unbranded package is gitignored — do not commit it next to the branded visual."
 ls -la "$ROOT/downloads/TaskList.pbiviz"

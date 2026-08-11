@@ -18,7 +18,7 @@
     "Role_Duration": "Duration",
     "Role_Duration_Desc": "Optional. Duration in days when End Date is absent.",
     "Role_Tooltips": "Tooltips",
-    "Role_Tooltips_Desc": "Optional later. Extra fields shown in tooltips.",
+    "Role_Tooltips_Desc": "Extra fields shown in tooltips (up to 8).",
     "Objects_General": "General",
     "Objects_Status": "Status",
     "Objects_Progress": "Progress",

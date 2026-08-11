@@ -4,3 +4,7 @@ dist/
 *.log
 webpack.statistics.*.html
 .DS_Store
+
+# Unbranded build outputs (personal only — never commit next to branded)
+downloads/TaskList.pbiviz
+downloads/wl/

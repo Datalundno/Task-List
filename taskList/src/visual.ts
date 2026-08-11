@@ -52,6 +52,7 @@ export class Visual implements IVisual {
     private selectedKeys: Set<string> = new Set();
     private lastViewport: { width: number; height: number } | null = null;
     private isLandingPageOn = false;
+    private focusedTaskIndex = 0;
 
     constructor(options: VisualConstructorOptions) {
         this.host = options.host;
@@ -106,6 +107,10 @@ export class Visual implements IVisual {
         this.root.on("contextmenu", (event: MouseEvent) => {
             this.showEmptyContextMenu(event);
         });
+
+        this.root.on("keydown", (event: KeyboardEvent) => {
+            this.onRootKeyDown(event);
+        });
     }
 
     public update(options: VisualUpdateOptions): void {
@@ -141,6 +146,7 @@ export class Visual implements IVisual {
                 const sortOrder = this.resolveSortOrder();
                 this.viewModel = convertDataView(dataView, this.host, sortOrder);
                 this.syncSelectionFromManager();
+                this.clampFocusedIndex();
             }
 
             this.lastViewport = {
@@ -204,7 +210,7 @@ export class Visual implements IVisual {
             ["Landing_Step1", "1. Drag Project into the Project field"],
             ["Landing_Step2", "2. Optional: RAG, Group, Project lead, Progress"],
             ["Landing_Step3", "3. Optional: Start Date and End Date"],
-            ["Landing_Step4", "4. Also supported later: Duration (if no End Date), Tooltips"]
+            ["Landing_Step4", "4. Also supported: Duration (if no End Date), Tooltips"]
         ];
         for (const [key, fallback] of stepKeys) {
             steps.append("li").text(this.t(key, fallback));
@@ -225,6 +231,69 @@ export class Visual implements IVisual {
         }
         this.isLandingPageOn = false;
         this.landing.style("display", "none");
+    }
+
+    private taskRows(): TaskRow[] {
+        return this.viewModel?.tasks ?? [];
+    }
+
+    private clampFocusedIndex(): void {
+        const count = this.taskRows().length;
+        if (count === 0) {
+            this.focusedTaskIndex = 0;
+            return;
+        }
+        this.focusedTaskIndex = Math.max(0, Math.min(this.focusedTaskIndex, count - 1));
+    }
+
+    private onRootKeyDown(event: KeyboardEvent): void {
+        if (!this.host.hostCapabilities?.allowInteractions) {
+            return;
+        }
+        if (this.isLandingPageOn || !this.viewModel || this.viewModel.tasks.length === 0) {
+            return;
+        }
+
+        const tasks = this.taskRows();
+        this.clampFocusedIndex();
+
+        switch (event.key) {
+            case "ArrowDown":
+                event.preventDefault();
+                this.focusedTaskIndex = Math.min(tasks.length - 1, this.focusedTaskIndex + 1);
+                this.renderFromState();
+                break;
+            case "ArrowUp":
+                event.preventDefault();
+                this.focusedTaskIndex = Math.max(0, this.focusedTaskIndex - 1);
+                this.renderFromState();
+                break;
+            case "Home":
+                event.preventDefault();
+                this.focusedTaskIndex = 0;
+                this.renderFromState();
+                break;
+            case "End":
+                event.preventDefault();
+                this.focusedTaskIndex = tasks.length - 1;
+                this.renderFromState();
+                break;
+            case "Enter":
+            case " ": {
+                event.preventDefault();
+                const task = tasks[this.focusedTaskIndex];
+                if (task) {
+                    this.selectTask(task, event.ctrlKey || event.metaKey);
+                }
+                break;
+            }
+            case "Escape":
+                event.preventDefault();
+                this.clearSelection();
+                break;
+            default:
+                break;
+        }
     }
 
     private showEmptyContextMenu(event: MouseEvent): void {
@@ -272,6 +341,13 @@ export class Visual implements IVisual {
             return;
         }
         const multi = event.ctrlKey || event.metaKey;
+        this.selectTask(task, multi);
+    }
+
+    private selectTask(task: TaskRow, multi: boolean): void {
+        if (!task.selectionId) {
+            return;
+        }
         this.selectionManager.select(task.selectionId, multi).then((ids: ISelectionId[]) => {
             this.selectedKeys = new Set((ids ?? []).map((id) => id.getKey()));
             this.renderFromState();
@@ -436,7 +512,18 @@ export class Visual implements IVisual {
             progressFill,
             showPercent,
             isSelected: (task) => this.isTaskSelected(task),
-            onClick: (event, task) => this.onRowClick(event, task),
+            isFocused: (task) => {
+                const tasks = this.taskRows();
+                const focused = tasks[this.focusedTaskIndex];
+                return !!focused && focused.id === task.id;
+            },
+            onClick: (event, task) => {
+                const idx = this.taskRows().findIndex((t) => t.id === task.id);
+                if (idx >= 0) {
+                    this.focusedTaskIndex = idx;
+                }
+                this.onRowClick(event, task);
+            },
             onContextMenu: (event, task) => this.onRowContextMenu(event, task),
             onMouseMove: (event, task) => this.onRowMouseMove(event, task),
             onMouseOut: (event, task) => this.onRowMouseOut(event, task)

@@ -105,7 +105,7 @@
             "displayNameKey": "Role_Tooltips",
             "name": "tooltipFields",
             "kind": "Grouping",
-            "description": "Optional later. Extra fields shown in tooltips.",
+            "description": "Extra fields shown in tooltips (up to 8).",
             "descriptionKey": "Role_Tooltips_Desc"
         }
     ],

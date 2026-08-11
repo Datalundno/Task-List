@@ -6,7 +6,7 @@
 
 - Website: https://datalund.no/support/
 - Product / help: https://datalund.no/visuals/task-list/
-- Email: jonas.lundervold@gmail.com
+- Email: support@datalund.no
 - GitHub Issues: https://github.com/Datalundno/Task-List/issues
 
 ## Before you open a ticket
@@ -18,5 +18,6 @@
 ## Docs
 
 - AppSource checklist: [`APPSOURCE.md`](./APPSOURCE.md)
+- Certification notes: [`CERTIFICATION.md`](./CERTIFICATION.md)
 - Sample Excel: `../downloads/TaskListSampleData.xlsx`
 - Kickoff brief: [`../../TASK_LIST.md`](../../TASK_LIST.md)
