@@ -6,7 +6,7 @@ This visual is the third suite item (after Gantt and Resource Load). It answers 
 
 **Do not fold Task List into the Gantt page.** Give it its own route, download, and nav entry.
 
-Field / density / starter contract: [`ECOSYSTEM.md`](ECOSYSTEM.md) (canonical on Website). Prefer End Date over Duration in copy; Duration and Tooltips are “also supported later.”
+Field / density / starter contract: [Website ECOSYSTEM.md](https://raw.githubusercontent.com/Datalundno/Website/main/ECOSYSTEM.md) (pointer in [`ECOSYSTEM.md`](ECOSYSTEM.md)). Prefer End Date over Duration in copy; Duration and Tooltips are also supported.
 
 ---
 
@@ -93,10 +93,10 @@ Use this trio consistently on home / visuals sections:
 
 ## Site changes to make
 
-Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-sync/APPLY.md`](website-sync/APPLY.md)).
+Work in **`Datalundno/Website`** (site HTML / downloads no longer ship from this visual repo — see [`website-sync/README.md`](website-sync/README.md)).
 
-1. **New help page:** `public/visuals/task-list/index.html` (ready-made in sync folder).
-2. **Downloads:** copy `taskList.pbiviz` + `TaskListSampleData.xlsx` into `public/downloads/`. Prefer regenerating sample from Website `scripts/generate-sample-data.py` so columns stay `Project · RAG · Group · Project lead · Progress · Start Date · End Date`.
+1. **New help page:** `public/visuals/task-list/index.html`.
+2. **Downloads:** copy branded `taskList/downloads/taskList.pbiviz` + `TaskListSampleData.xlsx` into Website `public/downloads/`. Prefer regenerating sample from Website `scripts/generate-sample-data.py` so columns stay `Project · RAG · Group · Project lead · Progress · Start Date · End Date`.
 3. **Home page (`index.html` / Vite app):**
    - Add Task List to visuals / nav (at least a second feature section or card).
    - Add SoftwareApplication JSON-LD for Task List (version `1.0.3.0`, download URL above).
@@ -129,7 +129,7 @@ Apply files from this repo’s [`website-sync/`](website-sync/) (see [`website-s
 
 ## White-label (do not ship on the website)
 
-An unbranded **Task List** package exists for personal use (`whitelabel-1.0.3.0` / `taskList/downloads/TaskList.pbiviz`).
+An unbranded **Task List** package can be built for personal use (`npm run package:whitelabel` → gitignored `downloads/TaskList.pbiviz`).
 
 - Display name: Task List (no DataLund)
 - Separate GUID from the branded visual
@@ -143,11 +143,12 @@ See [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md).
 
 | Path | Use |
 | --- | --- |
-| [`ECOSYSTEM.md`](ECOSYSTEM.md) | Suite contract (fields, density, starters) |
-| [`website-sync/`](website-sync/) | Drop-in HTML + downloads + APPLY steps |
+| [`ECOSYSTEM.md`](ECOSYSTEM.md) | Pointer to Website suite contract |
+| [`website-sync/README.md`](website-sync/README.md) | Where site assets live now |
 | [`TASK_LIST.md`](TASK_LIST.md) | Full product/engineering brief |
 | [`README.md`](README.md) | Field binding, RAG mapping, density |
-| [`taskList/downloads/`](taskList/downloads/) | Canonical `.pbiviz` + sample Excel |
+| [`taskList/downloads/`](taskList/downloads/) | Canonical branded `.pbiviz` + sample Excel |
 | [`taskList/docs/PRIVACY.md`](taskList/docs/PRIVACY.md) | Sandbox-only privacy |
 | [`taskList/docs/SUPPORT.md`](taskList/docs/SUPPORT.md) | Support contacts |
+| [`taskList/docs/CERTIFICATION.md`](taskList/docs/CERTIFICATION.md) | Certification + selection vs filter |
 | [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md) | Unbranded twin (personal only) |

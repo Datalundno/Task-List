@@ -2,19 +2,20 @@
 
 Free custom **Task List** visual for Microsoft Power BI by **DataLund** ([datalund.no](https://datalund.no)).
 
-Browse and select tasks/projects — scannable rows with optional RAG status chips, progress, groups, and dates that **cross-filter** Gantt, Resource Load, and native visuals.
+Browse and select tasks/projects — scannable rows with optional RAG status chips, progress, groups, and dates that **cross-filter** Gantt, Resource Load, and native visuals via Power BI **selection** (not the Filter API).
 
 | Path | Purpose |
 | --- | --- |
-| [`ECOSYSTEM.md`](ECOSYSTEM.md) | **Suite contract** (fields, density, starters) — copy of Website source of truth |
+| [`ECOSYSTEM.md`](ECOSYSTEM.md) | Pointer to the suite contract (canonical on Website) |
 | [`TASK_LIST.md`](TASK_LIST.md) | Agent kickoff brief (suite contracts + acceptance) |
-| [`WEBSITE.md`](WEBSITE.md) | **Website agent brief** — promo copy, URLs, suite positioning |
-| [`website-sync/`](website-sync/) | Drop-in product page + downloads for `Datalundno/Website` |
+| [`WEBSITE.md`](WEBSITE.md) | Website agent brief — promo copy, URLs, suite positioning |
+| [`LICENSE`](LICENSE) | MIT |
 | [`taskList/`](taskList/) | Power BI visual + package |
-| [`taskList/whitelabel/`](taskList/whitelabel/) | Unbranded identity overlays (personal build) |
+| [`taskList/whitelabel/`](taskList/whitelabel/) | Unbranded identity overlays (personal build; not on `certification`) |
+| [`taskList/docs/CERTIFICATION.md`](taskList/docs/CERTIFICATION.md) | Certification notes (render events, selection vs filter) |
 | [`taskList/docs/APPSOURCE.md`](taskList/docs/APPSOURCE.md) | AppSource upload checklist |
 | [`taskList/docs/WHITELABEL.md`](taskList/docs/WHITELABEL.md) | White-label build notes |
-| [`taskList/downloads/`](taskList/downloads/) | Packaged `.pbiviz` + sample Excel |
+| [`taskList/downloads/`](taskList/downloads/) | Branded `.pbiviz` + sample Excel |
 
 ## One job
 
@@ -31,7 +32,7 @@ cd taskList
 npm install
 npm start          # developer visual
 npm run package    # branded .pbiviz
-npm run package:whitelabel  # unbranded TaskList.pbiviz (personal only)
+npm run package:whitelabel  # unbranded TaskList.pbiviz (personal only; gitignored)
 ```
 
 Import `taskList/downloads/taskList.pbiviz` into Power BI Desktop (**Import a visual from a file**).
@@ -41,14 +42,14 @@ Import `taskList/downloads/taskList.pbiviz` into Power BI Desktop (**Import a vi
 | Build | Link |
 | --- | --- |
 | **Branded** — DataLund Task List 1.0.3.0 | [`taskList/downloads/taskList.pbiviz`](taskList/downloads/taskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/v1.0.3.0) |
-| **Unbranded (personal)** — Task List 1.0.3.0 | [`taskList/downloads/TaskList.pbiviz`](taskList/downloads/TaskList.pbiviz) · [release](https://github.com/Datalundno/Task-List/releases/tag/whitelabel-1.0.3.0) |
+| **Unbranded (personal)** — Task List 1.0.3.0 | Build locally with `npm run package:whitelabel` · optional [release](https://github.com/Datalundno/Task-List/releases/tag/whitelabel-1.0.3.0) |
 | Sample Excel | [`taskList/downloads/TaskListSampleData.xlsx`](taskList/downloads/TaskListSampleData.xlsx) |
 
-The unbranded build is **personal only** — do **not** put it on datalund.no. Rebuild with `cd taskList && npm run package:whitelabel`.
+The unbranded build is **personal only** — do **not** put it on datalund.no or on the `certification` branch. Rebuild with `cd taskList && npm run package:whitelabel`.
 
 ## Field binding
 
-Role **`name`** values match the DataLund suite ([`ECOSYSTEM.md`](ECOSYSTEM.md) §1) so reports can reuse the same columns:
+Role **`name`** values match the DataLund suite ([ECOSYSTEM on Website](https://raw.githubusercontent.com/Datalundno/Website/main/ECOSYSTEM.md) §1) so reports can reuse the same columns:
 
 | Field well | Role `name` | Required | Notes |
 | --- | --- | --- | --- |
@@ -59,10 +60,14 @@ Role **`name`** values match the DataLund suite ([`ECOSYSTEM.md`](ECOSYSTEM.md) 
 | Progress | `progress` | No | 0–1 or 0–100 |
 | Start Date | `startDate` | No | Column / sort |
 | End Date | `endDate` | No | Preferred end; teach this in samples |
-| Duration | `duration` | No | Optional later — days when End is absent |
-| Tooltips | `tooltipFields` | No | Optional later — up to 8 extra fields |
+| Duration | `duration` | No | Days when End is absent |
+| Tooltips | `tooltipFields` | No | Up to 8 extra fields (wired via `ITooltipService`) |
 
 This is a **list** visual: row color comes from `status` chips (Format → Status). There is no Format → General → Color by enum (that control is for timeline / bar visuals).
+
+### Cross-filtering (selection)
+
+Clicking a row calls `ISelectionManager.select`. Other visuals on the page respond through Power BI’s selection / highlight path. This visual does **not** implement `applyJsonFilter` / Filter API (by design — see [`taskList/docs/CERTIFICATION.md`](taskList/docs/CERTIFICATION.md)).
 
 ### Status / RAG mapping
 
@@ -78,7 +83,7 @@ Override the three RAG colors under **Format → Status**.
 
 ### Density
 
-**Format → General → Density** uses the suite presets: **Compact**, **Comfortable** (default), **Large**, **Custom**. Same names/numbers as DataLund Gantt ([`ECOSYSTEM.md`](ECOSYSTEM.md) §3).
+**Format → General → Density** uses the suite presets: **Compact**, **Comfortable** (default), **Large**, **Custom**. Same names/numbers as DataLund Gantt (ECOSYSTEM §3).
 
 ### Row limit
 
@@ -86,7 +91,7 @@ Table mapping uses a top count of **30 000** rows (same mindset as Gantt). Pre
 
 ## Sample data & Lists mapping
 
-Starter workbook (PM-maintained columns only — [`ECOSYSTEM.md`](ECOSYSTEM.md) §2):
+Starter workbook (PM-maintained columns only — ECOSYSTEM §2):
 
 `Project · RAG · Group · Project lead · Progress · Start Date · End Date`
 
@@ -102,13 +107,13 @@ Duration and Tooltips are supported by the visual but **not** in the default sta
 | Phase / Type / Domain | `group` |
 | Progress (%) | `progress` |
 | Start / End | `startDate` / `endDate` |
-| Next milestone, obstacles, notes (optional later) | `tooltipFields` |
+| Next milestone, obstacles, notes | `tooltipFields` |
 
 Tip: bind the **latest** update’s RAG/progress so the list shows current pulse, not history.
 
 ## Suite
 
-Sibling visuals live in separate repos. Shared contracts: [`ECOSYSTEM.md`](ECOSYSTEM.md).
+Sibling visuals live in separate repos. Shared contracts: [Website ECOSYSTEM.md](https://raw.githubusercontent.com/Datalundno/Website/main/ECOSYSTEM.md).
 
 | Visual | Answers |
 | --- | --- |
@@ -118,11 +123,10 @@ Sibling visuals live in separate repos. Shared contracts: [`ECOSYSTEM.md`](ECOSY
 
 ## Website / promotion
 
-Point the **Website** agent at [`WEBSITE.md`](WEBSITE.md) and [`website-sync/APPLY.md`](website-sync/APPLY.md).
+Point the **Website** agent at [`WEBSITE.md`](WEBSITE.md). Site HTML and public downloads live in **`Datalundno/Website`** (not in this repo).
 
 - Product URL: https://datalund.no/visuals/task-list/
 - Download: https://datalund.no/downloads/taskList.pbiviz
-- Ready HTML + `.pbiviz` + sample Excel live under [`website-sync/`](website-sync/)
 
 ## Privacy
 

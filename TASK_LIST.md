@@ -4,13 +4,13 @@ Copy this file into the new Task List repo (or point the agent at it). Implement
 
 **Reference implementation:** [Datalundno/GANTT](https://github.com/Datalundno/GANTT) → `ganttChart/` (DataLund Gantt 1.8.x).  
 **Sibling briefs:** Resource Load → `RESOURCE_LOAD.md` in the Gantt repo (separate visual).  
-**Suite contracts:** follow [`ECOSYSTEM.md`](ECOSYSTEM.md) (Website source of truth). Density and field-role names below must match that file; on conflict, `ECOSYSTEM.md` wins.
+**Suite contracts:** follow [Website ECOSYSTEM.md](https://raw.githubusercontent.com/Datalundno/Website/main/ECOSYSTEM.md) (pointer: [`ECOSYSTEM.md`](ECOSYSTEM.md)). Density and field-role names below must match that file; on conflict, Website ECOSYSTEM wins.
 
 ---
 
 ## 1) One job
 
-**Task List** is a **browse + select** list of tasks/projects — scannable rows that drive cross-filtering to Gantt, Resource Load, and native visuals.
+**Task List** is a **browse + select** list of tasks/projects — scannable rows that drive cross-filtering to Gantt, Resource Load, and native visuals via **`ISelectionManager`** (not `applyJsonFilter` / Filter API). See [`taskList/docs/CERTIFICATION.md`](taskList/docs/CERTIFICATION.md).
 
 | | |
 | --- | --- |
@@ -51,7 +51,7 @@ Keep role `name` values identical to the suite so reports can reuse the same col
 | Progress | `progress` | Measure | Optional. 0–1 or 0–100; show as bar or %. |
 | Start Date | `startDate` | GroupingOrMeasure | Optional. Column / sort. |
 | End Date | `endDate` | GroupingOrMeasure | Optional. Preferred end; teach this in samples / docs. |
-| Duration | `duration` | Measure | Optional later. Days; alternative when End is absent. |
+| Duration | `duration` | Measure | Optional. Days; alternative when End is absent. |
 | Status | `status` | Grouping | **Optional but recommended.** RAG or project status text (see below). |
 | Tooltips | `tooltipFields` | Grouping | Optional; up to ~8 extra fields (milestones, obstacles, notes). |
 

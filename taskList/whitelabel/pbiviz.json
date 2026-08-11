@@ -5,7 +5,7 @@
     "guid": "taskListWL0AB47A35089145D284187DE56271318E",
     "visualClassName": "Visual",
     "version": "1.0.3.0",
-    "description": "Task List for Power BI — browse and select tasks or projects with RAG status chips, progress, groups, density presets, cross-filtering, and tooltips.",
+    "description": "Task List for Power BI — browse and select tasks or projects with RAG status chips, progress, groups, density presets, selection-based cross-filtering, and tooltips.",
     "supportUrl": "https://example.com",
     "gitHubUrl": ""
   },
@@ -23,6 +23,5 @@
   "dependencies": null,
   "stringResources": [
     "stringResources/en-US/resources.resjson"
-  ],
-  "version": "1.0.3.0"
+  ]
 }

@@ -18,7 +18,7 @@
     "Role_Duration": "Duration",
     "Role_Duration_Desc": "Optional. Duration in days when End Date is absent.",
     "Role_Tooltips": "Tooltips",
-    "Role_Tooltips_Desc": "Optional later. Extra fields shown in tooltips.",
+    "Role_Tooltips_Desc": "Extra fields shown in tooltips (up to 8).",
     "Objects_General": "General",
     "Objects_Status": "Status",
     "Objects_Progress": "Progress",
@@ -42,7 +42,7 @@
     "Landing_Step1": "1. Drag Project into the Project field",
     "Landing_Step2": "2. Optional: RAG, Group, Project lead, Progress",
     "Landing_Step3": "3. Optional: Start Date and End Date",
-    "Landing_Step4": "4. Also supported later: Duration (if no End Date), Tooltips",
+    "Landing_Step4": "4. Also supported: Duration (if no End Date), Tooltips",
     "Msg_AddFields": "Add a Task (Project) field to render the list.",
     "Msg_RenderError": "Unable to render Task List"
 }

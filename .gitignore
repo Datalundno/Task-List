@@ -7,3 +7,7 @@ taskList/node_modules/
 taskList/.tmp/
 taskList/dist/
 taskList/webpack.statistics.*.html
+
+# Unbranded packages must not land in the branded/certification tree
+taskList/downloads/TaskList.pbiviz
+taskList/downloads/wl/

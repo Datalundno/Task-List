@@ -23,6 +23,7 @@ export interface RowRenderOptions {
     progressFill: string;
     showPercent: boolean;
     isSelected: (task: TaskRow) => boolean;
+    isFocused: (task: TaskRow) => boolean;
     onClick: (event: MouseEvent, task: TaskRow) => void;
     onContextMenu: (event: MouseEvent, task: TaskRow) => void;
     onMouseMove: (event: MouseEvent, task: TaskRow) => void;
@@ -73,6 +74,7 @@ export function renderListRows(
         progressFill,
         showPercent,
         isSelected,
+        isFocused,
         onClick,
         onContextMenu,
         onMouseMove,
@@ -92,6 +94,7 @@ export function renderListRows(
         .attr("class", "list-row");
 
     enter.append("rect").attr("class", "row-bg");
+    enter.append("rect").attr("class", "row-focus");
     enter.append("circle").attr("class", "status-chip");
     enter.append("text").attr("class", "row-name");
     enter.append("text").attr("class", "row-resource");
@@ -107,6 +110,13 @@ export function renderListRows(
 
     rows.attr("transform", (_d, i) => `translate(0,${i * rowH})`)
         .attr("role", (d) => d.kind === "task" ? "option" : "presentation")
+        .attr("aria-selected", (d) => {
+            if (d.kind !== "task" || !d.task) {
+                return null;
+            }
+            return isSelected(d.task) ? "true" : "false";
+        })
+        .classed("is-focused", (d) => !!(d.task && isFocused(d.task)))
         .style("cursor", (d) => d.kind === "task" ? "pointer" : "default");
 
     rows.select<SVGRectElement>("rect.row-bg")
@@ -132,6 +142,18 @@ export function renderListRows(
             }
             return 1;
         });
+
+    rows.select<SVGRectElement>("rect.row-focus")
+        .attr("x", 1)
+        .attr("y", 1)
+        .attr("width", Math.max(0, width - 2))
+        .attr("height", Math.max(0, rowH - 2))
+        .attr("fill", "none")
+        .attr("stroke", textColor)
+        .attr("stroke-width", 2)
+        .attr("rx", 2)
+        .attr("ry", 2)
+        .style("display", (d) => (d.task && isFocused(d.task) ? null : "none"));
 
     // Group headers
     rows.select<SVGTextElement>("text.header-label")
@@ -284,7 +306,7 @@ export function renderListRows(
 
     // Hide task-only elements on group rows
     rows.filter((d) => d.kind === "group")
-        .selectAll("circle.status-chip, text.row-name, text.row-resource, text.row-group, rect.progress-track, rect.progress-fill, text.progress-label, text.row-start, text.row-end")
+        .selectAll("circle.status-chip, text.row-name, text.row-resource, text.row-group, rect.progress-track, rect.progress-fill, text.progress-label, text.row-start, text.row-end, rect.row-focus")
         .style("display", "none");
 
     rows.on("click", function (event: MouseEvent, d: DisplayRow) {
