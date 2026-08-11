@@ -12,8 +12,7 @@
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
     "package": "pbiviz package",
-    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
-    "package:whitelabel": "bash scripts/package-whitelabel.sh"
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "engines": {
     "node": ">=20.19.0"
